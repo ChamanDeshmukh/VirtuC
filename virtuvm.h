@@ -32,10 +32,31 @@ typedef unsigned long long int int64;
   
 */
 
-struct s_vm {
-  CPU c,
-  Stack *s;
+typedef unsigned short int Reg;
 
+struct s_registers {
+    Reg ax;
+    Reg bx;
+    Reg cx;
+    Reg dx;
+    Reg sp;
+    Reg ip;
 };
+typedef struct s_registers Registers;
+
+struct s_cpu {
+    Registers r;
+};
+typedef struct s_cpu CPU;
+
+typedef int8 Stack[-1];
+typedef Instuction Program;
+
+struct s_vm {
+    CPU c,
+    Stack s;
+    Program *p;
+};
+typedef struct s_vm VM;
 
 int main(int, char**);
