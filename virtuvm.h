@@ -49,6 +49,18 @@ struct s_cpu {
 };
 typedef struct s_cpu CPU;
 
+/*
+    To make this work many Instuction/Opcode 
+    has to be implimented.
+ */
+
+
+struct s_instruction {
+    Opcode o;
+    Args a[]; // Opcode Args 0-2 bytes
+};
+typedef struct s_instruction Instuction;
+
 typedef int8 Stack[-1];
 typedef Instuction Program;
 
