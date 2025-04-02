@@ -54,6 +54,17 @@ typedef struct s_cpu CPU;
     has to be implimented.
  */
 
+struct s_instrmap {
+    Opcode o;
+    int8 size;
+};
+typedef struct s_instrmap IM;
+
+enum e_opcode{
+    mov = 0x01,
+    nop = 0x02
+}
+typedef enum e_opcode Opcode;
 
 struct s_instruction {
     Opcode o;
@@ -70,5 +81,17 @@ struct s_vm {
     Program *p;
 };
 typedef struct s_vm VM;
+
+/* 
+    mov ax 0x05 ==> (0x01 OR 0x02)
+                // 0000 0011 = mov
+                // 0000 0000 
+                // 0000 0101 = 0x05
+ */
+
+static IM *instrmap = {
+    { Opcode.mov, 0x03 },
+    { Opcode.nop, 0x01}
+}
 
 int main(int, char**);
