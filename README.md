@@ -14,5 +14,15 @@
 - Experiment with low-level programming and instruction sets.  
 - Build a foundation for more complex VM-based projects.  
 
+## Getting Started  
+1. Clone the repository:  
+   ```sh  
+   git clone https://github.com/ChamanDeshmukh/VirtuC.git  
+   cd VirtuC  
+   ```  
+2. Compile the VM:  
+   ```sh  
+   make
+   ```  
 ---  
-Explore the world of virtual machines with **VirtuC**! 🚀
+Explore the world of virtual machines with **VirtuC**!
