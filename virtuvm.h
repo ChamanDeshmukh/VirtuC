@@ -20,4 +20,22 @@ typedef unsigned long long int int64;
 #define $c (char *)
 #define $i (int)
 
+/*
+  this would be the 16bit VM with 65kb memory
+
+  AX - Reg
+  BX
+  CX
+  DX
+  SP - Stack top pointer
+  IP - Instuction pointer
+  
+*/
+
+struct s_vm {
+  CPU c,
+  Stack *s;
+
+};
+
 int main(int, char**);
