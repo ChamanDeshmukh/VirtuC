@@ -5,15 +5,15 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "errno.h"
-#include "virtuvm_utils.h"
+#include <errno.h>
+//#include <virtuvm_utils.h>
 
 typedef unsigned char int8;
 typedef unsigned short int int16;
 typedef unsigned int int32;
 typedef unsigned long long int int64;
 
-#define $1 (int 8 *)
+#define $1 (int8 *)
 #define $2 (int16)
 #define $4 (int32)
 #define $8 (int64)
@@ -54,17 +54,20 @@ typedef struct s_cpu CPU;
     has to be implimented.
  */
 
+enum e_opcode{
+    mov = 0x01,
+    nop = 0x02
+};
+typedef enum e_opcode Opcode;
+
 struct s_instrmap {
     Opcode o;
     int8 size;
 };
 typedef struct s_instrmap IM;
 
-enum e_opcode{
-    mov = 0x01,
-    nop = 0x02
-}
-typedef enum e_opcode Opcode;
+
+typedef int8 Args;
 
 struct s_instruction {
     Opcode o;
@@ -72,11 +75,11 @@ struct s_instruction {
 };
 typedef struct s_instruction Instuction;
 
-typedef int8 Stack[-1];
+typedef int8 Stack[(unsigned int)(-1)];
 typedef Instuction Program;
 
 struct s_vm {
-    CPU c,
+    CPU c;
     Stack s;
     Program *p;
 };
@@ -89,9 +92,10 @@ typedef struct s_vm VM;
                 // 0000 0101 = 0x05
  */
 
-static IM *instrmap = {
-    { Opcode.mov, 0x03 },
-    { Opcode.nop, 0x01}
-}
+// static Opcode opc;
+static IM instrmap[] = {
+    { mov, 0x03 },
+    { nop, 0x01 }
+};
 
 int main(int, char**);
