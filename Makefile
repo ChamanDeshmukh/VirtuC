@@ -5,7 +5,9 @@ flags=-O2 -Wall -std=c2x
 
 all: clean virtuvm
 
-virtuvm: virtuvm.o
+$(pwd)/virtuvm_utils/virtuvm_utils.o: $(pwd)/virtuvm_utils/virtuvm_utils.c $(pwd)/virtuvm_utils/virtuvm_utils.h	
+	(cd ./virtuvm_utils/ && make)
+virtuvm: virtuvm.o $(pwd)/virtuvm_utils/virtuvm_utils.o
 	# cc $(flags) $^ -o $@ $(ldflags)
 	cc $(flags) $^ -o $@ 
 
