@@ -8,6 +8,9 @@
 #include <errno.h>
 #include "./virtuvm_utils/virtuvm_utils.h"
 
+#define ErrMem      0x01    /* 00 10 */
+#define NoArgs      {0x00, 0x00}
+
 typedef unsigned char int8;
 typedef unsigned short int int16;
 typedef unsigned int int32;
@@ -19,7 +22,6 @@ typedef unsigned long long int int64;
 #define $8 (int64)
 #define $c (char *)
 #define $i (int)
-#define ErrMem      0x02    /* 00 10 */
 
 /*
   this would be the 16bit VM with 65kb memory
@@ -74,10 +76,10 @@ struct s_instruction {
     Opcode o;
     Args a[]; // Opcode Args 0-2 bytes
 };
-typedef struct s_instruction Instuction;
+typedef struct s_instruction Instruction;
 
 typedef int8 Stack[(unsigned int)(-1)];
-typedef Instuction Program;
+typedef Instruction Program;
 
 struct s_vm {
     CPU c;
@@ -99,5 +101,6 @@ static IM instrmap[] = {
     { nop, 0x01 }
 };
 
+Program *exampleprogram(void);
 VM *virtualmachine(Program*,int16);
 int main(int, char**);
