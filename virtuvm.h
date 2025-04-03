@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <errno.h>
-//#include <virtuvm_utils.h>
+#include "./virtuvm_utils/virtuvm_utils.h"
 
 typedef unsigned char int8;
 typedef unsigned short int int16;
@@ -19,6 +19,7 @@ typedef unsigned long long int int64;
 #define $8 (int64)
 #define $c (char *)
 #define $i (int)
+#define ErrMem      0x02    /* 00 10 */
 
 /*
   this would be the 16bit VM with 65kb memory

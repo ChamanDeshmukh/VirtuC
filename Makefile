@@ -1,15 +1,16 @@
 flags=-O2 -Wall -std=c2x
 # ldflags=-lbu
+ldflags=
 
 .PHONY: all clean
 
 all: clean virtuvm
 
-$(pwd)/virtuvm_utils/virtuvm_utils.o: $(pwd)/virtuvm_utils/virtuvm_utils.c $(pwd)/virtuvm_utils/virtuvm_utils.h	
+$(pwd)/virtuvm_utils/virtuvm_utils.o: ./virtuvm_utils/virtuvm_utils.c ./virtuvm_utils/virtuvm_utils.h	
 	(cd ./virtuvm_utils/ && make)
-virtuvm: virtuvm.o $(pwd)/virtuvm_utils/virtuvm_utils.o
+virtuvm: virtuvm.o ./virtuvm_utils/virtuvm_utils.o
 	# cc $(flags) $^ -o $@ $(ldflags)
-	cc $(flags) $^ -o $@ 
+	cc $(flags) $< -o $@ $(ldflags)./virtuvm_utils/virtuvm_utils.o
 
 virtuvm.o: virtuvm.c virtuvm.h
 	cc $(flags) -c $<

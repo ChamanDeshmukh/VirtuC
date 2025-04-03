@@ -1,4 +1,4 @@
-#include <virtuvm_utils.h>
+#include "virtuvm_utils.h"
 
 void copy(int8 *dst, int8 *src, int16 size) {
     int8 *d, *s;

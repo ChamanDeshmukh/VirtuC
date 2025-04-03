@@ -6,7 +6,7 @@ VM *virtualmachine(Program *pr, int16 progsz){
     int16 size;
 
     assert((pr) && (progsz));
-    size = sizeof(struct s_vm)
+    size = $2 sizeof(struct s_vm);
     p = (VM *)malloc($i size);
 
     if(!p){
@@ -23,7 +23,7 @@ VM *virtualmachine(Program *pr, int16 progsz){
 
         return (VM *)0;
     }
-    copy(pp, pr, progsz);
+    //copy(pp, pr, progsz);
 
     return p;
 }
