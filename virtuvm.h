@@ -92,10 +92,11 @@ typedef struct s_vm VM;
                 // 0000 0101 = 0x05
  */
 
-// static Opcode opc;
+static Opcode opc;
 static IM instrmap[] = {
     { mov, 0x03 },
     { nop, 0x01 }
 };
 
+VM *virtualmachine(Program*,int16);
 int main(int, char**);
