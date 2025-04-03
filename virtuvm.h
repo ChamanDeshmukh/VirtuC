@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <errno.h>
-#include "./virtuvm_utils/virtuvm_utils.h"
+#include <virtuvm_utils.h>
 
 #define ErrMem      0x01    /* 00 10 */
 #define NoArgs      {0x00, 0x00}
@@ -65,7 +65,7 @@ typedef enum e_opcode Opcode;
 
 struct s_instrmap {
     Opcode o;
-    int8 size;
+    int8 s;
 };
 typedef struct s_instrmap IM;
 
@@ -76,7 +76,7 @@ struct s_instruction {
     Opcode o;
     Args a[]; // Opcode Args 0-2 bytes
 };
-typedef struct s_instruction Instruction;
+typedef struct s_instruction *Instruction;
 
 typedef int8 Stack[(unsigned int)(-1)];
 typedef Instruction Program;
@@ -95,12 +95,14 @@ typedef struct s_vm VM;
                 // 0000 0101 = 0x05
  */
 
-static Opcode opc;
 static IM instrmap[] = {
     { mov, 0x03 },
     { nop, 0x01 }
 };
 
-Program *exampleprogram(void);
-VM *virtualmachine(Program*,int16);
+#define IMs (sizeof(instrmap)/sizeof(struct s_instrmap))
+
+Program exampleprogram(void);
+int8 map(Opcode);
+VM *virtualmachine(Program,int16);
 int main(int, char**);
