@@ -76,7 +76,7 @@ struct s_instruction {
     Opcode o;
     Args a[]; // Opcode Args 0-2 bytes
 };
-typedef struct s_instruction *Instruction;
+typedef struct s_instruction Instruction;
 
 typedef int8 Memory[(unsigned int)(-1)];
 typedef int8 Program; // <-- I could use it as array of Instructions. (maybe)
@@ -102,7 +102,7 @@ static IM instrmap[] = {
 
 #define IMs (sizeof(instrmap)/sizeof(struct s_instrmap))
 
-Program exampleprogram(void);
+Program *exampleprogram(VM*);
 int8 map(Opcode);
-VM *virtualmachine(Program,int16);
+VM *virtualmachine(void);
 int main(int, char**);

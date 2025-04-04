@@ -47,7 +47,7 @@ Program *exampleprogram(VM *vm){
     Program *p;
     Instruction *i1, *i2;
     Args *a1;
-    int16 s1, s2, sa1, ps;
+    int16 s1, s2, sa1;
 
     s1 = map(mov);
     s2 = map(nop);
@@ -60,8 +60,9 @@ Program *exampleprogram(VM *vm){
 
     i1->o = mov;
     sa1 = (s1 - 1);
-    if (!s1) {
+    if (s1) 
         a1 = (Args *)malloc($i sa1);
+    if (a1) {
         assert(a1);
 
         zero(a1,sa1);
@@ -70,18 +71,19 @@ Program *exampleprogram(VM *vm){
         *(a1+1) = 0x05;
     }
 
-    ps = (s1 + s2);
-    p = vm->m
-    copy($1 p, i1, 1);
+    p = vm->m;
+    copy($1 p,$1 i1, 1);
     p++;
 
-    if (a1) {
-        copy($i p, $1 a1, sa1);
+    if (sa1) {
+        copy($1 p, $1 a1, sa1);
         p += sa1;
-        free(a1);
     }
 
-   i2.o = nop;
+    if (a1)
+        free(a1);
+
+   i2->o = nop;
     copy($1 p,$1 i2, 1);
     free(i1);
     free(i2);
@@ -92,16 +94,15 @@ Program *exampleprogram(VM *vm){
 
 int main(int argc, char *argv[]){
 
-    int8 size;
     Program *prog;
     VM *vm;
     
-    size = (map(mov) + map(nop));
-    prog = exampleprogram();
+    vm = virtualmachine();
+    printf("VM = %p\n",vm);
+
+    prog = exampleprogram(vm);
     printf("Prog = %p\n",prog);
 
-    vm = virtualmachine(prog, size);
-    printf("VM = %p\n",vm);
     return 0;
 
 }
