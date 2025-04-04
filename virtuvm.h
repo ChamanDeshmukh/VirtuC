@@ -78,16 +78,16 @@ struct s_instruction {
 };
 typedef struct s_instruction *Instruction;
 
-typedef int8 Stack[(unsigned int)(-1)];
-typedef Instruction Program;
+typedef int8 Memory[(unsigned int)(-1)];
+typedef int8 Program; // <-- I could use it as array of Instructions. (maybe)
 
 struct s_vm {
     CPU c;
-    Stack s;
+    Memory s;
     Program *p;
 };
 typedef struct s_vm VM;
-
+typedef Memory *Stack;
 /* 
     mov ax 0x05 ==> (0x01 OR 0x02)
                 // 0000 0011 = mov
