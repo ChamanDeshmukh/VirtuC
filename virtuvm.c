@@ -74,9 +74,19 @@ Program *exampleprogram(VM *vm){
     p = vm->m
     copy($1 p, i1, 1);
     p++;
-    copy($i p, $1 a1, sa1);
-    p += sa1;
 
+    if (a1) {
+        copy($i p, $1 a1, sa1);
+        p += sa1;
+        free(a1);
+    }
+
+   i2.o = nop;
+    copy($1 p,$1 i2, 1);
+    free(i1);
+    free(i2);
+
+    return vm->m;
 }
 
 

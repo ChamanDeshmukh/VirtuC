@@ -83,7 +83,7 @@ typedef int8 Program; // <-- I could use it as array of Instructions. (maybe)
 
 struct s_vm {
     CPU c;
-    Memory s;
+    Memory m;
     Program *p;
 };
 typedef struct s_vm VM;
