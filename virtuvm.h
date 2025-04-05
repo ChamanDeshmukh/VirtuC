@@ -7,6 +7,10 @@
 #include <assert.h>
 #include <errno.h>
 #include <virtuvm_utils.h>
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+#pragma GCC diagnostic ignored "-Wformat-truncation="
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#pragma GCC diagnostic push
 
 #define ErrMem      0x01    /* 00 10 */
 #define NoArgs      {0x00, 0x00}

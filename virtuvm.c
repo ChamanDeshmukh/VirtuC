@@ -60,8 +60,9 @@ Program *exampleprogram(VM *vm){
 
     i1->o = mov;
     sa1 = (s1 - 1);
-    if (s1) 
+    if (s1)
         a1 = (Args *)malloc($i sa1);
+
     if (a1) {
         assert(a1);
 
@@ -75,13 +76,12 @@ Program *exampleprogram(VM *vm){
     copy($1 p,$1 i1, 1);
     p++;
 
-    if (sa1) {
+    if (a1) {
         copy($1 p, $1 a1, sa1);
         p += sa1;
+        free(a1);
     }
 
-    if (a1)
-        free(a1);
 
    i2->o = nop;
     copy($1 p,$1 i2, 1);
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]){
     VM *vm;
     
     vm = virtualmachine();
-    printf("VM = %p\n",vm);
+    printf("VM   = %p\n",vm);
 
     prog = exampleprogram(vm);
     printf("Prog = %p\n",prog);
