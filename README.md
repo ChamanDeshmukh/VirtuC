@@ -24,5 +24,9 @@
    ```sh  
    make
    ```  
+3. Run a sample program:  
+   ```sh  
+   ./virtuvm
+   ```  
 ---  
 Explore the world of virtual machines with **VirtuC**!
