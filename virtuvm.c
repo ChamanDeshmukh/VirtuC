@@ -85,6 +85,8 @@ Program *exampleprogram(VM *vm){
 
    i2->o = nop;
     copy($1 p,$1 i2, 1);
+
+    // vm->b = $2 (s1 + sa1 + s2);
     free(i1);
     free(i2);
 
@@ -103,6 +105,9 @@ int main(int argc, char *argv[]){
     prog = exampleprogram(vm);
     printf("Prog = %p\n",prog);
 
+    printhex($1 prog, (map(mov)+map(nop)), ' ');
     return 0;
 
 }
+
+#pragma GCC diagnostic pop
